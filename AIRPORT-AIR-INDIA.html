@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="AIRPORT-AIR-INDIA.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air India Airport Portal</title>
+    <style>
+        </style>
+    <script>
+        function searchFlights(event) {
+            event.preventDefault();
+            let from = document.getElementById("from").value;
+            let to = document.getElementById("to").value;
+            let date = document.getElementById("date").value;
+            let passengers = document.getElementById("passengers").value;
+            
+            let flights = [
+                { flight: "AI101", from: "Delhi", to: "Mumbai", time: "10:00 AM", price: "₹5000" },
+                { flight: "AI202", from: "Mumbai", to: "Chennai", time: "12:00 PM", price: "₹4500" },
+                { flight: "AI303", from: "Bangalore", to: "Delhi", time: "2:00 PM", price: "₹6000" }
+            ];
+            
+            let results = flights.filter(f => f.from.toLowerCase() === from.toLowerCase() && f.to.toLowerCase() === to.toLowerCase());
+            
+            let resultDiv = document.getElementById("flight-results");
+            resultDiv.innerHTML = "<h3>Available Flights:</h3>";
+            
+            if (results.length > 0) {
+                results.forEach(flight => {
+                    resultDiv.innerHTML += `<p>Flight: ${flight.flight}, Time: ${flight.time}, Price: ${flight.price}</p>`;
+                });
+            } else {
+                resultDiv.innerHTML += "<p>No flights available.</p>";
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Air India Airport Portal</h1>
+    </header>
+    <nav>
+        <a href="#flights">Flights</a>
+        <a href="#booking">Book a Flight</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <div class="container" id="flights">
+        <h2>Flight Information</h2>
+        <p>Check the latest arrivals and departures.</p>
+        <div class="flights-list" id="flight-results"></div>
+    </div>
+    <div class="container" id="booking">
+        <h2>Book a Flight</h2>
+        <div class="booking-form">
+            <form onsubmit="searchFlights(event)">
+                <label for="from">From:</label>
+                <input type="text" id="from" name="from" placeholder="Enter departure city">
+                
+                <label for="to">To:</label>
+                <input type="text" id="to" name="to" placeholder="Enter destination city">
+                
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date">
+                
+                <label for="passengers">Passengers:</label>
+                <select id="passengers" name="passengers">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5+</option>
+                </select>
+                
+                <button type="submit">Search Flights</button>
+            </form>
+        </div>
+    </div>
+    <div class="container" id="services">
+        <h2>Our Services</h2>
+        <p>We offer lounges, baggage handling, and more.</p>
+    </div>
+    <div class="container" id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: support@airindia.com | Phone: +91-XXXXXXXXXX</p>
+    </div>
+    <footer>
+        <p>&copy; 2025 Air India. All rights reserved.</p>
+    </footer>
+</body>
+</html>
